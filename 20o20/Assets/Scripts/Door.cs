@@ -41,6 +41,6 @@ public class door : MonoBehaviour
 
     private void MovePlayerToLinkedDoor()
     {
-        player.transform.position = linkedDoor.transform.position;
+        player.transform.position = new Vector3 (linkedDoor.transform.position.x, linkedDoor.transform.position.y, player.transform.position.z);
     }
 }
