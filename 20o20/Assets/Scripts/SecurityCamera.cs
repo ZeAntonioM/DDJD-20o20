@@ -14,7 +14,7 @@ public class SecurityCamera : MonoBehaviour
     private float detectionTimer = 0f;
     private bool playerDetected = false;
 
-    void start()
+    void Start()
     {
         transform.rotation = Quaternion.Euler(0, 0, startAngle);
     }
@@ -22,7 +22,7 @@ public class SecurityCamera : MonoBehaviour
     void Update()
     {
         DetectPlayer();
-        rotateCamera();
+        RotateCamera();
 
         if(playerDetected)
         {
@@ -55,10 +55,9 @@ public class SecurityCamera : MonoBehaviour
         }
     }
 
-    private void rotateCamera()
+    private void RotateCamera()
     {
         float angle = Mathf.PingPong(Time.time * rotationSpeed, 1) * (endAngle - startAngle) + startAngle;
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
-
 }
