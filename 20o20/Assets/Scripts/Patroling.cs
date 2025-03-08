@@ -57,7 +57,10 @@ public class Patroling : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject == player){
-            foundPlayer = true;
+            PlayerStatus playerStatus = player.GetComponent<PlayerStatus>();
+            if(playerStatus == null || !playerStatus.isInvisible){
+                foundPlayer = true;
+            }
         }
     }
 }
