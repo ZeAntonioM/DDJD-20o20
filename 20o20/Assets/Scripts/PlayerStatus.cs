@@ -1,10 +1,15 @@
+using System;
 using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
+
+    [SerializeField] private GameObject Points;
     public bool isInvisible = false;
     public bool hasCard = false;
-    private int points = 0;
+    private int p = 0;
+    private string stringp = "000000";
+
 
     public void SetInvisibility(bool value)
     {
@@ -18,12 +23,14 @@ public class PlayerStatus : MonoBehaviour
 
     public void AddPoints(int value)
     {
-        points += value;
+        p += value;
+        stringp = p.ToString("D6");
+        Points.GetComponent<TMPro.TextMeshProUGUI>().text = "Points: " + stringp;
     }
 
     public int GetPoints()
     {
-        return points;
+        return p;
     }
 
 }
