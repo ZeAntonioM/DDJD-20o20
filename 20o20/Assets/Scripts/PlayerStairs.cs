@@ -5,7 +5,7 @@ public class PlayerStairs : MonoBehaviour
     [SerializeField] private float stairClimbSpeed = 3f;
     [SerializeField] private GameObject upperFloor;
     
-    private Collider2D upperFloorCollider;
+    private Collider2D currentUpperFloorCollider;
     private Rigidbody2D rb;
     private Animator animator;
     private float vertical;
@@ -16,7 +16,6 @@ public class PlayerStairs : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        upperFloorCollider = upperFloor.GetComponent<Collider2D>();
     }
 
     void Update()
@@ -47,14 +46,20 @@ public class PlayerStairs : MonoBehaviour
     {
         if (isClimbing)
         {
-            rb.gravityScale = 0f; // Disable gravity
+            rb.gravityScale = 0f;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, vertical * stairClimbSpeed);
-            upperFloorCollider.isTrigger = true;
+            if(currentUpperFloorCollider != null)
+            {
+                currentUpperFloorCollider.isTrigger = true;
+            }
         }
         else
         {
-            rb.gravityScale = 1f; // Restore gravity
-            upperFloorCollider.isTrigger = false;
+            rb.gravityScale = 1f;
+            if(currentUpperFloorCollider != null)
+            {
+                currentUpperFloorCollider.isTrigger = false;
+            }
         }
     }
 
@@ -63,6 +68,7 @@ public class PlayerStairs : MonoBehaviour
         if (other.CompareTag("Stairs"))
         {
             isOnStairs = true;
+            currentUpperFloorCollider = other.transform.Find("UpperFloor").GetComponent<Collider2D>();
         }
     }
 
@@ -74,6 +80,11 @@ public class PlayerStairs : MonoBehaviour
             isClimbing = false;
             animator.SetBool("isClimbing", false);
             animator.SetBool("isDescending", false);
+            if(currentUpperFloorCollider != null)
+            {
+                currentUpperFloorCollider.isTrigger = false;
+                currentUpperFloorCollider = null;
+            }
         }
     }
 }
