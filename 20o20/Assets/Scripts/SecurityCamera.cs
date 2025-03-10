@@ -2,21 +2,21 @@ using UnityEngine;
 
 public class SecurityCamera : MonoBehaviour
 {
-    public float fovAngle = 45f;
-    public float detectionRange = 10f;
-    public Transform player;
-    public Transform fovPoint;
-    public float rotationSpeed = 0.1f;
-    public float startAngle = 30;
-    public float endAngle = 150;
-
-    public float timeToBust = 3f;
+    [SerializeField] private float fovAngle = 45f;
+    [SerializeField] private float detectionRange = 20f;
+    [SerializeField] private Transform player;
+    [SerializeField] private Transform fovPoint;
+    [SerializeField] private float timeToBust = 3f;
+    [SerializeField] private float flipInterval = 2f;
     private float detectionTimer = 0f;
     private bool playerDetected = false;
+    private float flipTimer = 0f;
+    private bool facingRight = true;
 
     void Start()
     {
-        transform.rotation = Quaternion.Euler(0, 0, startAngle);
+        // Initialize facing direction based on current scale
+        facingRight = transform.localScale.x > 0;
     }
 
     void Update()
@@ -37,6 +37,28 @@ public class SecurityCamera : MonoBehaviour
         }
     }
 
+    private void RotateCamera()
+    {
+        flipTimer += Time.deltaTime;
+
+        if (flipTimer >= flipInterval)
+        {
+            flipTimer = 0f;
+            FlipCamera();
+        }
+    }
+
+    private void FlipCamera()
+    {
+        facingRight = !facingRight;
+        
+        Vector3 scale = transform.localScale;
+        
+        scale.x *= -1;
+        
+        transform.localScale = scale;
+    }
+
     private void DetectPlayer()
     {
         Vector2 directionToPlayer = player.position - transform.position;
@@ -53,11 +75,5 @@ public class SecurityCamera : MonoBehaviour
                 //Debug.Log("Player detected");
             }
         }
-    }
-
-    private void RotateCamera()
-    {
-        float angle = Mathf.PingPong(Time.time * rotationSpeed, 1) * (endAngle - startAngle) + startAngle;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 }
