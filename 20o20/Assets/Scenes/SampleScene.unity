@@ -1031,6 +1031,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 259227088}
+  smoothTime: 2.5
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &901684758
 MonoBehaviour:
   m_ObjectHideFlags: 0
