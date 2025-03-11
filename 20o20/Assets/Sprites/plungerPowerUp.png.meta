@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2b30c8c4af336454babf22a9b66a4672
+guid: 74687a9dcb7b721428e5d86c2add97f2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4234842835690268992
-    second: Door Handle_0
+      213: 5985203804608867357
+    second: plungerPowerUp_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,30 +109,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Door Handle_0
+      name: plungerPowerUp_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 2
-        width: 10
-        height: 131
+        x: 11
+        y: 23
+        width: 29
+        height: 53
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0c6d21bc0e0da35c0800000000000000
-      internalID: -4234842835690268992
+      spriteID: d1c270a3627bf0350800000000000000
+      internalID: 5985203804608867357
       vertices: []
       indices: 
       edges: []
@@ -160,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Door Handle_0: -4234842835690268992
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerStairs : MonoBehaviour
 {
     [SerializeField] private float stairClimbSpeed = 3f;
-    [SerializeField] private GameObject upperFloor;
     
     private Collider2D currentUpperFloorCollider;
     private Rigidbody2D rb;
@@ -68,7 +67,21 @@ public class PlayerStairs : MonoBehaviour
         if (other.CompareTag("Stairs"))
         {
             isOnStairs = true;
-            currentUpperFloorCollider = other.transform.Find("UpperFloor").GetComponent<Collider2D>();
+            Transform parentTransform = other.transform.parent;
+            while (parentTransform != null)
+            {
+                if (parentTransform.name == "UpperFloor")
+                {
+                    currentUpperFloorCollider = parentTransform.GetComponent<Collider2D>();
+                    break;
+                }
+                parentTransform = parentTransform.parent;
+            }
+
+            if (currentUpperFloorCollider == null)
+            {
+                Debug.LogWarning("UpperFloor not found in the parent hierarchy of the Stairs object.");
+            }
         }
     }
 

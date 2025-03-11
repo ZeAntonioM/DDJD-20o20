@@ -16,10 +16,8 @@ public class door : MonoBehaviour
     
     void Start()
     {
-        // Try to find the correct renderer component
         playerRenderer = player.GetComponent<SpriteRenderer>();
         
-        // If not found, look for it in children
         if (playerRenderer == null)
         {
             playerRenderer = player.GetComponentInChildren<SpriteRenderer>();
@@ -28,7 +26,7 @@ public class door : MonoBehaviour
 
     void Update()
     {
-        if (isPlayerColliding && Input.GetKeyDown(KeyCode.W) && !isTransitioning)
+        if (!isTransitioning && isPlayerColliding && Input.GetKeyDown(KeyCode.W))
         {
             StartTransition();
         }

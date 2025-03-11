@@ -2,19 +2,25 @@ using UnityEngine;
 
 public class Patroling : MonoBehaviour
 {
-
     private Transform PointA;
     private Transform PointB;
     [SerializeField] private GameObject player;
     [SerializeField] private float speed = 1;
+    [SerializeField] private float idleTime = 2f; // Time to wait at each point
     private bool foundPlayer = false;
 
     private Transform currentPoint;
     private Rigidbody2D rb;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    private bool isIdle = false;
+    private float idleTimer = 0f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         Transform parent = transform.parent;
 
         if(parent != null){
@@ -29,15 +35,21 @@ public class Patroling : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(foundPlayer){
-            rb.linearVelocity = new Vector2(0, 0);
+            rb.linearVelocity = Vector2.zero;
+            animator.SetFloat("Speed", 0);
+        } else if (isIdle) {
+            idleTimer += Time.deltaTime;
+            if (idleTimer >= idleTime) {
+                isIdle = false;
+                idleTimer = 0f;
+                currentPoint = (currentPoint == PointA) ? PointB : PointA;
+            }
         } else {
             PatrolBehavior();
         }
-
     }
 
     private void PatrolBehavior(){
@@ -45,19 +57,25 @@ public class Patroling : MonoBehaviour
 
         if (currentPoint == PointA){
             rb.linearVelocity = new Vector2(-speed, 0);
+            spriteRenderer.flipX = true;
         } else {
             rb.linearVelocity = new Vector2(speed, 0);
+            spriteRenderer.flipX = false;
         }
+
+        animator.SetFloat("Speed", Mathf.Abs(rb.linearVelocity.x));
 
         if(Vector2.Distance(transform.position, currentPoint.position) < 0.5f){
-            currentPoint = (currentPoint == PointA) ? PointB : PointA;
+            isIdle = true;
+            rb.linearVelocity = Vector2.zero;
+            animator.SetFloat("Speed", 0);
         }
     }
-
 
     private void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject == player){
             PlayerStatus playerStatus = player.GetComponent<PlayerStatus>();
+            Debug.Log("Player found");
             if(playerStatus == null || !playerStatus.isInvisible){
                 foundPlayer = true;
             }
