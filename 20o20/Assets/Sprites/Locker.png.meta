@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cf25e8f03e41004438b59453bff098bd
+guid: b326c800305e15849b47a148e650a367
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2734889983194581622
-    second: Jail_Singles_48x48_82 1_0
+      213: 3615900723022076319
+    second: Locker_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jail_Singles_48x48_82 1_0
+      name: Locker_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 0
-        width: 35
-        height: 28
+        x: 0
+        y: 2
+        width: 46
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 67a461c13f744f520800000000000000
-      internalID: 2734889983194581622
+      spriteID: f991fcabc824e2230800000000000000
+      internalID: 3615900723022076319
       vertices: []
       indices: 
       edges: []

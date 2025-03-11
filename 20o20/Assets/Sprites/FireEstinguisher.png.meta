@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 72341f74a13f3a245b4462c542486444
+guid: f57df3320f51f414b84c7921fad00480
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7007310212455531998
-    second: SCS_Skyline_Daytime_Layer03_0
+      213: 8617137663975350887
+    second: FireEstinguisher_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SCS_Skyline_Daytime_Layer03_0
+      name: FireEstinguisher_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 640
-        height: 134
+        x: 8
+        y: 26
+        width: 32
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 22afe93fc7801ce90800000000000000
-      internalID: -7007310212455531998
+      spriteID: 762e3e1cc09369770800000000000000
+      internalID: 8617137663975350887
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      SCS_Skyline_Daytime_Layer03_0: -7007310212455531998
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

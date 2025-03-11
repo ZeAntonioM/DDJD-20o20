@@ -1,46 +1,101 @@
 using UnityEngine;
+using System.Collections;
 
 public class door : MonoBehaviour
 {
-
     [SerializeField] private GameObject linkedDoor;
     [SerializeField] private GameObject player;
+    [SerializeField] private float transitionSpeed = 0.5f;
+    
     private bool isPlayerColliding = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private bool isTransitioning = false;
+    private Vector3 targetPosition;
+    private Vector3 startPosition;
+    private float transitionProgress = 0f;
+    private SpriteRenderer playerRenderer;
+    
     void Start()
     {
+        // Try to find the correct renderer component
+        playerRenderer = player.GetComponent<SpriteRenderer>();
         
+        // If not found, look for it in children
+        if (playerRenderer == null)
+        {
+            playerRenderer = player.GetComponentInChildren<SpriteRenderer>();
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (isPlayerColliding && Input.GetKeyDown(KeyCode.W))
+        if (isPlayerColliding && Input.GetKeyDown(KeyCode.W) && !isTransitioning)
         {
-            MovePlayerToLinkedDoor();
+            StartTransition();
         }
         
+        if (isTransitioning)
+        {
+            ContinueTransition();
+        }
     }
 
-    
-    private void OnTriggerEnter2D(Collider2D collission)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collission.gameObject == player)
+        if (collision.gameObject == player)
         {
             isPlayerColliding = true;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collission)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collission.gameObject == player)
+        if (collision.gameObject == player)
         {
             isPlayerColliding = false;
         }
     }
 
-    private void MovePlayerToLinkedDoor()
+    private void StartTransition()
     {
-        player.transform.position = new Vector3 (linkedDoor.transform.position.x, linkedDoor.transform.position.y, player.transform.position.z);
+        isTransitioning = true;
+        startPosition = player.transform.position;
+        targetPosition = new Vector3(linkedDoor.transform.position.x, linkedDoor.transform.position.y, player.transform.position.z);
+        transitionProgress = 0f;
+
+        HidePlayer();
+    }
+
+    private void HidePlayer()
+    {
+        if (playerRenderer != null)
+        {
+            playerRenderer.enabled = false;
+        }
+    }
+
+    private void ShowPlayer()
+    {
+        if (playerRenderer != null)
+        {
+            playerRenderer.enabled = true;
+        }
+    }
+
+    private void ContinueTransition()
+    {
+        transitionProgress += Time.deltaTime * transitionSpeed;
+        
+        if (transitionProgress >= 1f)
+        {
+            player.transform.position = targetPosition;
+            isTransitioning = false;
+            
+            ShowPlayer();
+        }
+        else
+        {
+            // Continue moving
+            player.transform.position = Vector3.Lerp(startPosition, targetPosition, transitionProgress);
+        }
     }
 }
