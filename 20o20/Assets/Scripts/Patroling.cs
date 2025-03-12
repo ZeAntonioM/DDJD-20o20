@@ -65,7 +65,7 @@ public class Patroling : MonoBehaviour
 
         animator.SetFloat("Speed", Mathf.Abs(rb.linearVelocity.x));
 
-        if(Vector2.Distance(transform.position, currentPoint.position) < 0.5f){
+        if(Vector2.Distance(transform.position, currentPoint.position) < 0.25f){
             isIdle = true;
             rb.linearVelocity = Vector2.zero;
             animator.SetFloat("Speed", 0);

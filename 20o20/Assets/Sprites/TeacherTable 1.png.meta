@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 74687a9dcb7b721428e5d86c2add97f2
+guid: e3f0400be937e7a4bbc3d1a25eec0f0c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5985203804608867357
-    second: plungerPowerUp_0
+      213: 8307740331047521508
+    second: TeacherTable 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: plungerPowerUp_0
+      name: TeacherTable 1_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 23
-        width: 29
-        height: 53
+        x: 4
+        y: 8
+        width: 74
+        height: 104
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d1c270a3627bf0350800000000000000
-      internalID: 5985203804608867357
+      spriteID: 4ec064690d50b4370800000000000000
+      internalID: 8307740331047521508
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      plungerPowerUp_0: 5985203804608867357
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

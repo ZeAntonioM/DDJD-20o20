@@ -72,8 +72,21 @@ public class SecurityCamera : MonoBehaviour
             if (hit.collider != null && hit.collider.CompareTag("Player"))
             {
                 playerDetected = true;
-                //Debug.Log("Player detected");
+                Debug.Log("Player detected");
             }
         }
     }
+
+    //private void OnDrawGizmos()
+    //{
+    //    if (fovPoint == null) return;
+//
+    //    Gizmos.color = Color.red;
+    //    Vector3 leftBoundary = Quaternion.Euler(0, 0, fovAngle / 2) * fovPoint.up * detectionRange;
+    //    Vector3 rightBoundary = Quaternion.Euler(0, 0, -fovAngle / 2) * fovPoint.up * detectionRange;
+//
+    //    Gizmos.DrawLine(fovPoint.position, fovPoint.position + leftBoundary);
+    //    Gizmos.DrawLine(fovPoint.position, fovPoint.position + rightBoundary);
+    //    Gizmos.DrawWireSphere(fovPoint.position, detectionRange);
+    //}
 }

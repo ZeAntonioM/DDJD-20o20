@@ -3,6 +3,8 @@ using UnityEngine;
 public class DoorOpen : MonoBehaviour
 {
     private Animator animator;
+    private int charactersInTrigger = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,19 +19,27 @@ public class DoorOpen : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Guard"))
         {
-            animator.SetBool("Opening", true);
-            animator.SetBool("isOpen", true);
+            charactersInTrigger++;
+            if (charactersInTrigger == 1)
+            {
+                animator.SetBool("Opening", true);
+                animator.SetBool("isOpen", true);
+            }
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Guard"))
         {
-            animator.SetBool("Opening", false);
-            animator.SetBool("isOpen", false);
+            charactersInTrigger--;
+            if (charactersInTrigger == 0)
+            {
+                animator.SetBool("Opening", false);
+                animator.SetBool("isOpen", false);
+            }
         }
     }
 }
