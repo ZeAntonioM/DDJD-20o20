@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cfc290c76fffb6c4687deb8f09eee02b
+guid: adcb1869c531b91449d5d3d413950e14
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4231541304711598978
-    second: Adam_idle_16x16_0
+      213: 3078762972699908271
+    second: Museum_Singles_48x48_65_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,89 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Adam_idle_16x16_0
+      name: Museum_Singles_48x48_65_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 2
         y: 0
-        width: 16
-        height: 32
+        width: 44
+        height: 79
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 1f043931f746b3e4fa474f3fe3c54293
-      internalID: 827855439
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Adam_idle_16x16_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2362c5b5d435ca340bc1813003b76e60
-      internalID: -670279265
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Adam_idle_16x16_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e49b6c828c3d28c4c905725713924a3d
-      internalID: 80217923
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Adam_idle_16x16_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: abd1f17e3bb43724b8704abd99835732
-      internalID: -987535977
+      spriteID: fa857679c96f9ba20800000000000000
+      internalID: 3078762972699908271
       vertices: []
       indices: 
       edges: []
@@ -217,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 41e40aaaf4868c94c8d64e3498731a86
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -226,11 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Adam_idle_16x16_0: 827855439
-      Adam_idle_16x16_1: -670279265
-      Adam_idle_16x16_2: 80217923
-      Adam_idle_16x16_3: -987535977
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

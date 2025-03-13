@@ -14,6 +14,7 @@ public class door : MonoBehaviour
     private float transitionProgress = 0f;
     private SpriteRenderer playerRenderer;
     private Animator doorAnimator;
+    private Animator linkedDoorAnimator;
     
     void Start()
     {
@@ -25,6 +26,7 @@ public class door : MonoBehaviour
         }
 
         doorAnimator = GetComponent<Animator>();
+        linkedDoorAnimator = linkedDoor.GetComponent<Animator>();
     }
 
     void Update()
@@ -35,6 +37,8 @@ public class door : MonoBehaviour
             {
                 doorAnimator.SetBool("Opening", true);
                 doorAnimator.SetBool("Open", true);
+                linkedDoorAnimator.SetBool("Opening", true);
+                linkedDoorAnimator.SetBool("Open", true);
             }
             StartTransition();
         }
@@ -91,6 +95,8 @@ public class door : MonoBehaviour
         {
             doorAnimator.SetBool("Opening", false);
             doorAnimator.SetBool("Open", false);
+            linkedDoorAnimator.SetBool("Opening", false);
+            linkedDoorAnimator.SetBool("Open", false);
         }
     }
 
