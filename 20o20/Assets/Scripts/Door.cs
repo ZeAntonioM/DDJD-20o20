@@ -13,6 +13,7 @@ public class door : MonoBehaviour
     private Vector3 startPosition;
     private float transitionProgress = 0f;
     private SpriteRenderer playerRenderer;
+    private Animator doorAnimator;
     
     void Start()
     {
@@ -22,12 +23,19 @@ public class door : MonoBehaviour
         {
             playerRenderer = player.GetComponentInChildren<SpriteRenderer>();
         }
+
+        doorAnimator = GetComponent<Animator>();
     }
 
     void Update()
     {
         if (!isTransitioning && isPlayerColliding && Input.GetKeyDown(KeyCode.W))
         {
+            if(doorAnimator != null)
+            {
+                doorAnimator.SetBool("Opening", true);
+                doorAnimator.SetBool("Open", true);
+            }
             StartTransition();
         }
         
@@ -55,6 +63,7 @@ public class door : MonoBehaviour
 
     private void StartTransition()
     {
+
         isTransitioning = true;
         startPosition = player.transform.position;
         targetPosition = new Vector3(linkedDoor.transform.position.x, linkedDoor.transform.position.y, player.transform.position.z);
@@ -77,6 +86,12 @@ public class door : MonoBehaviour
         {
             playerRenderer.enabled = true;
         }
+
+        if(doorAnimator != null)
+        {
+            doorAnimator.SetBool("Opening", false);
+            doorAnimator.SetBool("Open", false);
+        }
     }
 
     private void ContinueTransition()
@@ -92,7 +107,6 @@ public class door : MonoBehaviour
         }
         else
         {
-            // Continue moving
             player.transform.position = Vector3.Lerp(startPosition, targetPosition, transitionProgress);
         }
     }
