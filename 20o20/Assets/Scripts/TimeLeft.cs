@@ -14,7 +14,7 @@ public class TimeLeft : MonoBehaviour
         timeLeft = timeToComplete;
         int minutes = Mathf.FloorToInt(timeLeft / 60F);
         int seconds = Mathf.FloorToInt(timeLeft % 60F);
-        TMP.text = "Time Left: " + string.Format("{0:00}m{1:00}s", minutes, seconds);
+        TMP.text = "Time Left: " + string.Format("{0:00}m {1:00}s", minutes, seconds);
     }
 
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class TimeLeft : MonoBehaviour
             timeLeft -= Time.deltaTime;
             int minutes = Mathf.FloorToInt(timeLeft / 60F);
             int seconds = Mathf.FloorToInt(timeLeft % 60F);
-            TMP.text = "Time Left: " + string.Format("{0:00}m{1:00}s", minutes, seconds);
+            TMP.text = "Time Left: " + string.Format("{0:00}m {1:00}s", minutes, seconds);
         }
         else
         {
