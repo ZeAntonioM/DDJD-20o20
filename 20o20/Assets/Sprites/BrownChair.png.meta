@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BrownChair_0: -5080411321833148817
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

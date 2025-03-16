@@ -6,7 +6,7 @@ public class FollowPlayer : MonoBehaviour
     [SerializeField] private Transform player;
 
     [Header("Transition Control")]
-    [SerializeField] private float smoothTime = 0.3f;
+    [SerializeField] private float smoothTime = 0.1f;
     [SerializeField] private Vector3 velocity;
 
 

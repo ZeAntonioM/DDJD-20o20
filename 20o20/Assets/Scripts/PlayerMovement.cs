@@ -29,11 +29,11 @@ public class playerMovement : MonoBehaviour
     }
 
     public void DefaultSpeed(){
-        speed = 5;
+        speed = 1.5f;
     }
 
     public void SpeedUp(){
-        speed = 10;
+        speed = 3.0f;
     }
 
 }
