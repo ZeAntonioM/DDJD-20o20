@@ -24,6 +24,7 @@ public class RedbullPowerup : MonoBehaviour
         if (spriteRenderer.enabled == false)
         {
             timer -= Time.deltaTime;
+            Debug.Log(timer);
             if (timer <= 0)
             {
                 spriteRenderer.enabled = true;

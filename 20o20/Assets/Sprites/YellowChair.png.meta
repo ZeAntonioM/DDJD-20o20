@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      YellowChair_0: -677824597344531861
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
