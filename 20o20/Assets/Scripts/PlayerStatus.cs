@@ -10,10 +10,18 @@ public class PlayerStatus : MonoBehaviour
     private int p = 0;
     private string stringp = "000000";
 
+    private Animator animator;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
 
     public void SetInvisibility(bool value)
     {
         isInvisible = value;
+        animator.SetBool("isInvisible", isInvisible);
     }
 
     public void SetCard(bool value)
