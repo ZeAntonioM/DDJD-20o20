@@ -62,11 +62,6 @@ public class Patroling : MonoBehaviour
         {
             Investigate();
         }
-        else if (foundPlayer)
-        {
-            rb.linearVelocity = Vector2.zero;
-            animator.SetFloat("Speed", 0);
-        }
         else if (isIdle)
         {
             idleTimer += Time.deltaTime;
@@ -108,15 +103,44 @@ public class Patroling : MonoBehaviour
         spriteRenderer.flipX = (direction.x < 0);
         FlipFOV(spriteRenderer.flipX);
         animator.SetFloat("Speed", Mathf.Abs(rb.linearVelocity.x));
+
+        if (!playerDetected) {
+            detectionTimer += Time.deltaTime;
+            if (detectionTimer >= timeToBust)
+            {
+                chasing = false;
+                investigating = true;
+                lastSeenPosition = player.transform.position;
+                detectionTimer = 0f;
+            }
+        }
+        else
+        {
+            detectionTimer = 0f;
+        }
+
     }
 
     private void Investigate()
     {
         Vector2 direction = lastSeenPosition - (Vector2)transform.position;
-        if (direction.magnitude < 0.25f)
+        if (direction.x < 0.25f) 
         {
-            investigating = false;
-            currentPoint = PointA; // Return to patrol
+            if (detectionTimer >= timeToBust)
+            {
+                investigating = false;
+                chasing = false;
+                foundPlayer = false;
+                currentPoint = PointA; // Return to patrol
+                detectionTimer = 0f;
+            }
+            else
+            {
+                detectionTimer += Time.deltaTime;
+                rb.linearVelocity = Vector2.zero;
+                animator.SetFloat("Speed", 0);
+            }
+
         }
         else
         {
@@ -135,7 +159,7 @@ public class Patroling : MonoBehaviour
 
         playerDetected = false;
 
-        if (angle < fovAngle / 2)
+        if (angle < fovAngle )
         {
             if (hit.collider != null && hit.collider.CompareTag("Player"))
             {
