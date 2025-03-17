@@ -13,11 +13,13 @@ public class SecurityCamera : MonoBehaviour
     private bool playerDetected = false;
     private float flipTimer = 0f;
     private bool facingRight = true;
+    private GameController gameController;
 
     void Start()
     {
         // Initialize facing direction based on current scale
         facingRight = transform.localScale.x > 0;
+        gameController = FindFirstObjectByType<GameController>();
         
     }
 
@@ -31,7 +33,10 @@ public class SecurityCamera : MonoBehaviour
             detectionTimer += Time.deltaTime;
             if(detectionTimer >= timeToBust)
             {
-                Debug.Log("Player busted");
+                if(gameController != null)
+                {
+                    gameController.GameOver();
+                }
             }
         } else
         {

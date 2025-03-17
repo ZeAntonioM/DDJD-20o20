@@ -71,7 +71,7 @@ public class Menu : MonoBehaviour
             sb.AppendLine("RANK    SCORE      TIME");
             sb.AppendLine("------------------------");
             
-            for (int i = 0; i < Mathf.Min(runs.Count, 10); i++)  // Show top 10 scores
+            for (int i = 0; i < Mathf.Min(runs.Count, 5); i++)
             {
                 RunData run = runs[i];
                 string formattedTime = FormatTime(run.timeTaken);
