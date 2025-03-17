@@ -32,4 +32,21 @@ public class TimeLeft : MonoBehaviour
             TMP.text = "Time's up!";
         }
     }
+
+    // New method to return time left in seconds
+    public float GetTimeLeftInSeconds()
+    {
+        return timeLeft;
+    }
+
+    // New method to return time taken in seconds
+    public float GetTimeTakenInSeconds()
+    {
+        return timeToComplete - timeLeft;
+    }
+
+    public void StopTimer()
+    {
+        timeLeft = 0;
+    }
 }

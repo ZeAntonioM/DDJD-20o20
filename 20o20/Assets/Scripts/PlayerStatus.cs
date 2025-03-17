@@ -5,6 +5,7 @@ public class PlayerStatus : MonoBehaviour
 {
 
     [SerializeField] private GameObject Points;
+    [SerializeField] private GameObject Time;
     public bool isInvisible = false;
     public bool hasCard = false;
     private int p = 0;
@@ -40,5 +41,18 @@ public class PlayerStatus : MonoBehaviour
     {
         return p;
     }
+
+    public float GetTimeTaken()
+    {
+        TimeLeft timeComponent = Time.GetComponent<TimeLeft>();
+        return timeComponent.GetTimeTakenInSeconds();
+    }
+
+    public float GetTotalTime()
+    {
+        TimeLeft timeComponent = Time.GetComponent<TimeLeft>();
+        return timeComponent.timeToComplete;
+    }
+
 
 }
