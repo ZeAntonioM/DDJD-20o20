@@ -3,11 +3,12 @@ using UnityEngine;
 public class SecurityCamera : MonoBehaviour
 {
     [SerializeField] private float fovAngle = 45f;
-    [SerializeField] private float detectionRange = 20f;
+    [SerializeField] private float detectionRange = 1.2f;
     [SerializeField] private Transform player;
     [SerializeField] private Transform fovPoint;
     [SerializeField] private float timeToBust = 3f;
     [SerializeField] private float flipInterval = 2f;
+    [SerializeField] private float GizmosDetectionRange = 1f;
     private float detectionTimer = 0f;
     private bool playerDetected = false;
     private float flipTimer = 0f;
@@ -17,6 +18,7 @@ public class SecurityCamera : MonoBehaviour
     {
         // Initialize facing direction based on current scale
         facingRight = transform.localScale.x > 0;
+        
     }
 
     void Update()
@@ -77,16 +79,33 @@ public class SecurityCamera : MonoBehaviour
         }
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    if (fovPoint == null) return;
-//
-    //    Gizmos.color = Color.red;
-    //    Vector3 leftBoundary = Quaternion.Euler(0, 0, fovAngle / 2) * fovPoint.up * detectionRange;
-    //    Vector3 rightBoundary = Quaternion.Euler(0, 0, -fovAngle / 2) * fovPoint.up * detectionRange;
-//
-    //    Gizmos.DrawLine(fovPoint.position, fovPoint.position + leftBoundary);
-    //    Gizmos.DrawLine(fovPoint.position, fovPoint.position + rightBoundary);
-    //    Gizmos.DrawWireSphere(fovPoint.position, detectionRange);
-    //}
+    private void OnDrawGizmos()
+    {
+        if (fovPoint == null) return;
+
+        Gizmos.color = Color.green;
+        if (playerDetected)
+        {
+            Gizmos.color = new Color(1.0f, 0.5f, 0.0f);
+            if (detectionTimer >= timeToBust)
+            {
+                Gizmos.color = Color.red;
+            }
+        }
+        int segments = 100;
+        float angleStep = fovAngle / segments;
+
+        // Draw filled area
+        Gizmos.color = new Color(Gizmos.color.r, Gizmos.color.g, Gizmos.color.b, 0.2f);
+        for (int i = 0; i < segments; i++)
+        {
+            float currentAngle = -fovAngle / 2 + i * angleStep;
+            float nextAngle = -fovAngle / 2 + (i + 1) * angleStep;
+            Vector3 currentPoint = fovPoint.position + Quaternion.Euler(0, 0, currentAngle) * fovPoint.up * GizmosDetectionRange;
+            Vector3 nextPoint = fovPoint.position + Quaternion.Euler(0, 0, nextAngle) * fovPoint.up * GizmosDetectionRange;
+            Gizmos.DrawLine(fovPoint.position, currentPoint);
+            Gizmos.DrawLine(currentPoint, nextPoint);
+            Gizmos.DrawLine(nextPoint, fovPoint.position);
+        }
+    }
 }

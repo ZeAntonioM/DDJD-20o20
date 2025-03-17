@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2215237296533087967}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.73, y: -1.088, z: -0.05569764}
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
@@ -102,11 +102,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fovAngle: 45
-  detectionRange: 2
+  detectionRange: 1.2
   player: {fileID: 0}
   fovPoint: {fileID: 8088596366036059985}
   timeToBust: 1
-  flipInterval: 2
+  flipInterval: 3
+  GizmosDetectionRange: 0.5
 --- !u!1 &8405546417471290654
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,10 +132,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8405546417471290654}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.9659258, w: 0.2588191}
+  m_LocalRotation: {x: 0, y: 0, z: 0.9396927, w: 0.34202018}
   m_LocalPosition: {x: -0.07, y: -0.071, z: 0.002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7579456129658270726}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 150}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 140}
