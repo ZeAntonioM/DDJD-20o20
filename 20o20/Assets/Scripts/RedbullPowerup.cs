@@ -32,6 +32,9 @@ public class RedbullPowerup : MonoBehaviour
                 timer = 10;
                 player.GetComponent<playerMovement>().DefaultSpeed();
             }
+            else {
+                player.GetComponent<playerMovement>().SpeedUp();
+            }
         }
 
     }
