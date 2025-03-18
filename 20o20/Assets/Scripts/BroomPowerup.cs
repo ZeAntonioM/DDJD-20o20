@@ -52,6 +52,9 @@ public class BroomPowerup : MonoBehaviour
                     playerStatus.SetInvisibility(false);
                 }
             }
+            else if(playerStatus != null){
+                playerStatus.SetInvisibility(true);
+            }
         }
 
     }

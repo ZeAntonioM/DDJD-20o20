@@ -113,7 +113,7 @@ public class Patroling : MonoBehaviour
 
         Vector2 direction = currentPoint.position - transform.position;
         rb.linearVelocity = new Vector2( (direction.x < 0) ? -speed : speed, 0);
-        spriteRenderer.flipX = currentPoint == PointA;
+        spriteRenderer.flipX = direction.x < 0;
         FlipFOV(spriteRenderer.flipX);
 
         animator.SetFloat("Speed", Mathf.Abs(rb.linearVelocity.x));
@@ -199,15 +199,16 @@ public class Patroling : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(fovPoint.position, directionToPlayer, detectionRange, layerMask);
 
         playerDetected = false;
-        //Debug.Log("Raycast hit: " + (hit.collider != null ? hit.collider.name : "None"));
 
-        if (angle < fovAngle / 2)
+        if (angle < fovAngle / 2) 
         {
             if (hit.collider != null && hit.collider.CompareTag("Player"))
             {
-                playerDetected = true;
-                //Debug.Log("Player detected");
+                if (!ps.isInvisible) playerDetected = true;
             }
+        }
+        if (directionToPlayer.magnitude < 0.5f) {
+            if (!ps.isInvisible) playerDetected = true;
         }
     }
 
