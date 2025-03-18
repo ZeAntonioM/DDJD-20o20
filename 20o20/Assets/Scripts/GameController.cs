@@ -3,6 +3,7 @@ using TMPro;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class RunData
@@ -21,6 +22,7 @@ public class RunsData
 public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject winScreen;
+    [SerializeField] private GameObject loseScreen;
     [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private TextMeshProUGUI timeScoreText;
     [SerializeField] private GameObject gameInterface;
@@ -28,6 +30,7 @@ public class GameController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        loseScreen.SetActive(false);
         winScreen.SetActive(false);
         playerStatus = FindFirstObjectByType<PlayerStatus>();
         if (playerStatus == null)
@@ -40,6 +43,11 @@ public class GameController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void GameOver(){
+        loseScreen.gameObject.SetActive(true);
+        gameInterface.SetActive(false);
     }
 
     public void GameWin(){
@@ -107,5 +115,14 @@ public class GameController : MonoBehaviour
         File.WriteAllText(filePath, updatedJson);
         
         Debug.Log("Run saved to: " + filePath);
+    }
+
+    public void GoToMenu()
+    {
+        // Load the scene with the name "Menu"
+        PlayerPrefs.Save();
+        
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        
     }
 }
