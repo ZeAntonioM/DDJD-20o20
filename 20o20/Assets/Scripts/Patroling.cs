@@ -166,9 +166,9 @@ public class Patroling : MonoBehaviour
 
         playerDetected = false;
 
-        Debug.Log("Direction to player: " + directionToPlayer);
-        Debug.Log("Angle to player: " + angle);
-        Debug.Log("Raycast hit: " + (hit.collider != null ? hit.collider.name : "None"));
+        //Debug.Log("Direction to player: " + directionToPlayer);
+        //Debug.Log("Angle to player: " + angle);
+        //Debug.Log("Raycast hit: " + (hit.collider != null ? hit.collider.name : "None"));
 
         if (angle < fovAngle / 2)
         {

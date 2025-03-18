@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
-
     [SerializeField] private GameObject Points;
-    [SerializeField] private GameObject Time;
     public bool isInvisible = false;
     public bool hasCard = false;
     private int p = 0;
@@ -17,7 +15,6 @@ public class PlayerStatus : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
-
 
     public void SetInvisibility(bool value)
     {
@@ -44,15 +41,15 @@ public class PlayerStatus : MonoBehaviour
 
     public float GetTimeTaken()
     {
-        TimeLeft timeComponent = Time.GetComponent<TimeLeft>();
-        return timeComponent.GetTimeTakenInSeconds();
+        TimeLeft timeComponent = GameObject.FindFirstObjectByType<TimeLeft>();
+        if (timeComponent != null)
+        {
+            return timeComponent.GetTimeTakenInSeconds();
+        }
+        else
+        {
+            Debug.LogError("TimeLeft component not found!");
+            return 0f;
+        }
     }
-
-    public float GetTotalTime()
-    {
-        TimeLeft timeComponent = Time.GetComponent<TimeLeft>();
-        return timeComponent.timeToComplete;
-    }
-
-
 }

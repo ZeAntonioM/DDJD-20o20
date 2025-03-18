@@ -27,16 +27,14 @@ public class GameController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timeScoreText;
     [SerializeField] private GameObject gameInterface;
     private PlayerStatus playerStatus;
+    private TimeLeft time;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         loseScreen.SetActive(false);
         winScreen.SetActive(false);
-        playerStatus = FindFirstObjectByType<PlayerStatus>();
-        if (playerStatus == null)
-        {
-            Debug.LogError("PlayerStatus not found in the scene!");
-        }
+        playerStatus = GameObject.FindFirstObjectByType<PlayerStatus>();
+        time = GameObject.FindFirstObjectByType<TimeLeft>();
     }
 
     // Update is called once per frame
@@ -51,12 +49,10 @@ public class GameController : MonoBehaviour
     }
 
     public void GameWin(){
-        winScreen.SetActive(true);
-        gameInterface.SetActive(false);
 
         // Get player stats
         int finalScore = playerStatus.GetPoints();
-        float timeTaken = playerStatus.GetTimeTaken();
+        float timeTaken = this.GetTimeTaken();
 
         // Display scores without time bonus
         if (finalScoreText != null)
@@ -69,7 +65,15 @@ public class GameController : MonoBehaviour
         Debug.Log("Final Score: " + finalScore);
         Debug.Log("Time Taken: " + timeTaken + " seconds");
 
+        winScreen.SetActive(true);
+        gameInterface.SetActive(false);
+
         SaveRunToJson();
+    }
+
+    public float GetTimeTaken()
+    {
+        return time.GetTimeTakenInSeconds();
     }
 
     private string FormatTime(float seconds)
@@ -93,7 +97,7 @@ public class GameController : MonoBehaviour
         RunData newRun = new RunData
         {
             score = playerStatus.GetPoints(),
-            timeTaken = playerStatus.GetTimeTaken(),
+            timeTaken = this.GetTimeTaken(),
             date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
         };
         

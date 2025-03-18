@@ -7,6 +7,8 @@ public class TimeLeft : MonoBehaviour
     
     [SerializeField] public float timeToComplete = 300.0f;
     private float timeLeft;
+    private GameController gameController;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,6 +17,8 @@ public class TimeLeft : MonoBehaviour
         int minutes = Mathf.FloorToInt(timeLeft / 60F);
         int seconds = Mathf.FloorToInt(timeLeft % 60F);
         TMP.text = "Time Left: " + string.Format("{0:00}m {1:00}s", minutes, seconds);
+        gameController = FindFirstObjectByType<GameController>();
+
     }
 
     // Update is called once per frame
@@ -30,6 +34,10 @@ public class TimeLeft : MonoBehaviour
         else
         {
             TMP.text = "Time's up!";
+            if (gameController != null)
+            {
+                gameController.GameOver();
+            }
         }
     }
 

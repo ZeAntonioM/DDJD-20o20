@@ -6,9 +6,11 @@ public class SecurityCamera : MonoBehaviour
     [SerializeField] private float detectionRange = 1.2f;
     [SerializeField] private Transform player;
     [SerializeField] private Transform fovPoint;
-    [SerializeField] private float timeToBust = 3f;
-    [SerializeField] private float flipInterval = 2f;
+    [SerializeField] private float timeToBust = 4f;
+    [SerializeField] private float flipInterval = 6f;
     [SerializeField] private float GizmosDetectionRange = 1f;
+    [SerializeField] private GameObject yellowInterrogation;
+    [SerializeField] private GameObject redExclamation;
     private float detectionTimer = 0f;
     private bool playerDetected = false;
     private float flipTimer = 0f;
@@ -20,6 +22,8 @@ public class SecurityCamera : MonoBehaviour
         // Initialize facing direction based on current scale
         facingRight = transform.localScale.x > 0;
         gameController = FindFirstObjectByType<GameController>();
+        yellowInterrogation.SetActive(false);
+        redExclamation.SetActive(false);
         
     }
 
@@ -28,19 +32,32 @@ public class SecurityCamera : MonoBehaviour
         DetectPlayer();
         RotateCamera();
 
-        if(playerDetected)
+        if (playerDetected)
         {
             detectionTimer += Time.deltaTime;
-            if(detectionTimer >= timeToBust)
+            if (detectionTimer >= timeToBust)
             {
-                if(gameController != null)
+                if (gameController != null)
                 {
                     gameController.GameOver();
                 }
             }
-        } else
+            else if (detectionTimer >= timeToBust / 2)
+            {
+                redExclamation.SetActive(true);
+                yellowInterrogation.SetActive(false);
+            }
+            else
+            {
+                yellowInterrogation.SetActive(true);
+                redExclamation.SetActive(false);
+            }
+        }
+        else
         {
             detectionTimer = 0;
+            yellowInterrogation.SetActive(false);
+            redExclamation.SetActive(false);
         }
     }
 
@@ -58,12 +75,19 @@ public class SecurityCamera : MonoBehaviour
     private void FlipCamera()
     {
         facingRight = !facingRight;
-        
+
         Vector3 scale = transform.localScale;
-        
         scale.x *= -1;
-        
         transform.localScale = scale;
+
+        // Adjust the rotation of the interrogation and exclamation marks
+        Vector3 yellowRotation = yellowInterrogation.transform.eulerAngles;
+        yellowRotation.y += 180;
+        yellowInterrogation.transform.eulerAngles = yellowRotation;
+
+        Vector3 redRotation = redExclamation.transform.eulerAngles;
+        redRotation.y += 180;
+        redExclamation.transform.eulerAngles = redRotation;
     }
 
     private void DetectPlayer()
