@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8554291470719476026}
   - component: {fileID: 6096362674801314481}
   - component: {fileID: 2771884715903491935}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bigodes
   m_TagString: Guard
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9030304088289904975}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FOV
   m_TagString: Untagged
   m_Icon: {fileID: 0}

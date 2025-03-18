@@ -7,7 +7,6 @@ public class Patroling : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private float speed = 1;
     [SerializeField] private float idleTime = 2f; // Time to wait at each point
-    private bool foundPlayer = false;
     private bool investigating = false;
     private bool chasing = false;
 
@@ -53,6 +52,12 @@ public class Patroling : MonoBehaviour
     void Update()
     {
         DetectPlayer();
+
+        if (playerDetected)
+        {
+            chasing = true;
+            investigating = false;
+        }
 
         if (chasing)
         {
@@ -130,7 +135,6 @@ public class Patroling : MonoBehaviour
             {
                 investigating = false;
                 chasing = false;
-                foundPlayer = false;
                 currentPoint = PointA; // Return to patrol
                 detectionTimer = 0f;
             }
@@ -153,13 +157,20 @@ public class Patroling : MonoBehaviour
 
     private void DetectPlayer()
     {
-        Vector2 directionToPlayer = player.transform.position - transform.position;
-        float angle = Vector3.Angle(directionToPlayer, fovPoint.up);
-        RaycastHit2D hit = Physics2D.Raycast(fovPoint.position, directionToPlayer, detectionRange);
+        Vector2 directionToPlayer = player.transform.position - fovPoint.position;
+        float angle = Vector2.Angle(fovPoint.up, directionToPlayer);
+
+        int layerMask = ~(1 << gameObject.layer);
+
+        RaycastHit2D hit = Physics2D.Raycast(fovPoint.position, directionToPlayer, detectionRange, layerMask);
 
         playerDetected = false;
 
-        if (angle < fovAngle )
+        Debug.Log("Direction to player: " + directionToPlayer);
+        Debug.Log("Angle to player: " + angle);
+        Debug.Log("Raycast hit: " + (hit.collider != null ? hit.collider.name : "None"));
+
+        if (angle < fovAngle / 2)
         {
             if (hit.collider != null && hit.collider.CompareTag("Player"))
             {
@@ -174,19 +185,9 @@ public class Patroling : MonoBehaviour
         if (other.gameObject == player)
         {
             PlayerStatus playerStatus = player.GetComponent<PlayerStatus>();
-            Debug.Log("Player found");
             if (playerStatus == null || !playerStatus.isInvisible)
             {
-                if (!foundPlayer)
-                {
-                    foundPlayer = true;
-                    investigating = true;
-                    lastSeenPosition = player.transform.position;
-                }
-                else
-                {
-                    chasing = true;
-                }
+                //Debug.Log("Perdemo");
             }
         }
     }

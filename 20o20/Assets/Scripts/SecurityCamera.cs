@@ -79,7 +79,7 @@ public class SecurityCamera : MonoBehaviour
             if (hit.collider != null && hit.collider.CompareTag("Player"))
             {
                 playerDetected = true;
-                Debug.Log("Player detected");
+                //Debug.Log("Player detected");
             }
         }
     }
