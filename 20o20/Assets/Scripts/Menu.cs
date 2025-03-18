@@ -43,8 +43,8 @@ public class Menu : MonoBehaviour
         RunsData runsData = JsonUtility.FromJson<RunsData>(json);
         
         List<RunData> sortedRuns = runsData.runs
-            .OrderBy(r => r.timeTaken)
-            .ThenByDescending(r => r.score)
+            .OrderByDescending(r => r.score)
+            .ThenBy(r => r.timeTaken)
             .ToList();
         
         return sortedRuns;

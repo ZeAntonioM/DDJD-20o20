@@ -51,8 +51,8 @@ public class GameController : MonoBehaviour
     public void GameWin(){
 
         // Get player stats
-        int finalScore = playerStatus.GetPoints();
         float timeTaken = this.GetTimeTaken();
+        int finalScore = this.CalculateScore(timeTaken);
 
         // Display scores without time bonus
         if (finalScoreText != null)
@@ -69,6 +69,17 @@ public class GameController : MonoBehaviour
         gameInterface.SetActive(false);
 
         SaveRunToJson();
+    }
+
+
+    private int CalculateScore(float timeTaken){
+        int finalScore = playerStatus.GetPoints();
+        int timeBonus = 1000 - (int)timeTaken;
+        if (timeBonus < 0){
+            timeBonus = 0;
+        }
+        finalScore += (timeBonus * 6);
+        return finalScore;
     }
 
     public float GetTimeTaken()
@@ -96,7 +107,7 @@ public class GameController : MonoBehaviour
         // Create new run data
         RunData newRun = new RunData
         {
-            score = playerStatus.GetPoints(),
+            score = this.CalculateScore(this.GetTimeTaken()),
             timeTaken = this.GetTimeTaken(),
             date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
         };
