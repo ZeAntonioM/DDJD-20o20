@@ -139,8 +139,8 @@ MonoBehaviour:
   detectionRange: 1.2
   player: {fileID: 0}
   fovPoint: {fileID: 8088596366036059985}
-  timeToBust: 1
-  flipInterval: 3
+  timeToBust: 2
+  flipInterval: 4
   GizmosDetectionRange: 0.5
   yellowInterrogation: {fileID: 6831088101861866037}
   redExclamation: {fileID: 3208238903311246806}
