@@ -1,3 +1,5 @@
+using JetBrains.Annotations;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Patroling : MonoBehaviour
@@ -25,6 +27,8 @@ public class Patroling : MonoBehaviour
     private bool playerDetected = false;
     private float detectionTimer = 0f;
     [SerializeField] private float timeToBust = 3f;
+    private GameController gameController;
+    private PlayerStatus ps;
 
     void Start()
     {
@@ -32,6 +36,7 @@ public class Patroling : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         Transform parent = transform.parent;
+        gameController = FindFirstObjectByType<GameController>();
 
         if (parent != null)
         {
@@ -47,6 +52,16 @@ public class Patroling : MonoBehaviour
                 Debug.LogError("Patroling: PointA or PointB not found");
             }
         }
+
+        if (player != null)
+        {
+            ps = player.GetComponent<PlayerStatus>();
+        }
+        else
+        {
+            Debug.LogError("Patroling: Player not found");
+        }
+
     }
 
     void Update()
@@ -86,7 +101,8 @@ public class Patroling : MonoBehaviour
     private void PatrolBehavior()
     {
 
-        rb.linearVelocity = new Vector2( (currentPoint == PointA) ? -speed : speed, 0);
+        Vector2 direction = currentPoint.position - transform.position;
+        rb.linearVelocity = new Vector2( (direction.x < 0) ? -speed : speed, 0);
         spriteRenderer.flipX = currentPoint == PointA;
         FlipFOV(spriteRenderer.flipX);
 
@@ -102,25 +118,32 @@ public class Patroling : MonoBehaviour
 
     private void ChasePlayer()
     {
-        Vector2 targetPosition = player.transform.position;
-        Vector2 direction = targetPosition - (Vector2)transform.position;
-        rb.linearVelocity = direction.normalized * (speed * 1.5f);
-        spriteRenderer.flipX = (direction.x < 0);
-        FlipFOV(spriteRenderer.flipX);
-        animator.SetFloat("Speed", Mathf.Abs(rb.linearVelocity.x));
 
-        if (!playerDetected) {
-            detectionTimer += Time.deltaTime;
-            if (detectionTimer >= timeToBust)
+        if (!ps.isInvisible) {
+            Vector2 targetPosition = player.transform.position;
+            Vector2 direction = targetPosition - (Vector2)transform.position;
+            rb.linearVelocity = direction.normalized * (speed * 1.5f);
+            spriteRenderer.flipX = (direction.x < 0);
+            FlipFOV(spriteRenderer.flipX);
+            animator.SetFloat("Speed", Mathf.Abs(rb.linearVelocity.x));
+
+            if (!playerDetected) {
+                detectionTimer += Time.deltaTime;
+                if (detectionTimer >= timeToBust)
+                {
+                    chasing = false;
+                    investigating = true;
+                    lastSeenPosition = player.transform.position;
+                    detectionTimer = 0f;
+                }
+            }
+            else
             {
-                chasing = false;
-                investigating = true;
-                lastSeenPosition = player.transform.position;
                 detectionTimer = 0f;
             }
         }
-        else
-        {
+        else {
+            chasing = false;
             detectionTimer = 0f;
         }
 
@@ -166,10 +189,6 @@ public class Patroling : MonoBehaviour
 
         playerDetected = false;
 
-        //Debug.Log("Direction to player: " + directionToPlayer);
-        //Debug.Log("Angle to player: " + angle);
-        //Debug.Log("Raycast hit: " + (hit.collider != null ? hit.collider.name : "None"));
-
         if (angle < fovAngle / 2)
         {
             if (hit.collider != null && hit.collider.CompareTag("Player"))
@@ -184,10 +203,9 @@ public class Patroling : MonoBehaviour
     {
         if (other.gameObject == player)
         {
-            PlayerStatus playerStatus = player.GetComponent<PlayerStatus>();
-            if (playerStatus == null || !playerStatus.isInvisible)
+            if (ps == null || !ps.isInvisible)
             {
-                //Debug.Log("Perdemo");
+                if (chasing) gameController.GameOver();
             }
         }
     }
