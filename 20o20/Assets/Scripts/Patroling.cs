@@ -29,6 +29,8 @@ public class Patroling : MonoBehaviour
     [SerializeField] private float timeToBust = 3f;
     private GameController gameController;
     private PlayerStatus ps;
+    [SerializeField] private GameObject yellowInterrogation, redExclamation;
+    LayerMask layerMask;
 
     void Start()
     {
@@ -37,6 +39,9 @@ public class Patroling : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         Transform parent = transform.parent;
         gameController = FindFirstObjectByType<GameController>();
+        if (yellowInterrogation != null) yellowInterrogation.SetActive(false);
+        if (redExclamation != null) redExclamation.SetActive(false);
+        layerMask = ~(1 << gameObject.layer | 1 << LayerMask.NameToLayer("NotDetectedByEnemy"));
 
         if (parent != null)
         {
@@ -67,6 +72,7 @@ public class Patroling : MonoBehaviour
     void Update()
     {
         DetectPlayer();
+        //Debug.Log(ps.isInvisible);
 
         if (playerDetected)
         {
@@ -76,10 +82,14 @@ public class Patroling : MonoBehaviour
 
         if (chasing)
         {
+            redExclamation.SetActive(true);
+            yellowInterrogation.SetActive(false);
             ChasePlayer();
         }
         else if (investigating)
         {
+            redExclamation.SetActive(false);
+            yellowInterrogation.SetActive(true);
             Investigate();
         }
         else if (isIdle)
@@ -158,8 +168,11 @@ public class Patroling : MonoBehaviour
             {
                 investigating = false;
                 chasing = false;
+                playerDetected = false;
                 currentPoint = PointA; // Return to patrol
                 detectionTimer = 0f;
+                redExclamation.SetActive(false);
+                yellowInterrogation.SetActive(false);
             }
             else
             {
@@ -183,18 +196,17 @@ public class Patroling : MonoBehaviour
         Vector2 directionToPlayer = player.transform.position - fovPoint.position;
         float angle = Vector2.Angle(fovPoint.up, directionToPlayer);
 
-        int layerMask = ~(1 << gameObject.layer);
-
         RaycastHit2D hit = Physics2D.Raycast(fovPoint.position, directionToPlayer, detectionRange, layerMask);
 
         playerDetected = false;
+        //Debug.Log("Raycast hit: " + (hit.collider != null ? hit.collider.name : "None"));
 
         if (angle < fovAngle / 2)
         {
             if (hit.collider != null && hit.collider.CompareTag("Player"))
             {
                 playerDetected = true;
-                Debug.Log("Player detected");
+                //Debug.Log("Player detected");
             }
         }
     }
@@ -209,6 +221,7 @@ public class Patroling : MonoBehaviour
             }
         }
     }
+
 
     private void FlipFOV(bool flip)
     {
@@ -253,4 +266,5 @@ public class Patroling : MonoBehaviour
             Gizmos.DrawLine(nextPoint, fovPoint.position);
         }
     }
+    
 }
