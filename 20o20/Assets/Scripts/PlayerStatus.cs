@@ -5,6 +5,7 @@ public class PlayerStatus : MonoBehaviour
 {
     [SerializeField] private GameObject Points;
     public bool isInvisible = false;
+    public bool doorAnimation = false;
     public bool hasCard = false;
     private int p = 0;
     private string stringp = "000000";
@@ -16,10 +17,15 @@ public class PlayerStatus : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void SetInvisibility(bool value)
+    public void SetInvisibility(bool value, bool animation = true)
     {
         isInvisible = value;
-        animator.SetBool("isInvisible", isInvisible);
+        if(animation) animator.SetBool("isInvisible", isInvisible);
+    }
+
+    public void SetDoorAnimation(bool value)
+    {
+        doorAnimation = value;
     }
 
     public void SetCard(bool value)

@@ -8476,6 +8476,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8789631681495705267, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
   m_PrefabInstance: {fileID: 4753155034784938157}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &806900281
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806900279}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 857c66155ba37604eb0d24bd6e6d90c7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &811574945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10241,6 +10263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Points: {fileID: 744525316}
   isInvisible: 0
+  doorAnimation: 0
   hasCard: 0
 --- !u!61 &1096506066
 BoxCollider2D:
@@ -11974,6 +11997,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1096506061}
+    - target: {fileID: -6897943128145670975, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
+      propertyPath: isElevator
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -6897943128145670975, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
       propertyPath: linkedDoor
       value: 
@@ -13955,9 +13982,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1096506061}
     - target: {fileID: -6897943128145670975, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
+      propertyPath: isElevator
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6897943128145670975, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
       propertyPath: linkedDoor
       value: 
       objectReference: {fileID: 806900279}
+    - target: {fileID: -6897943128145670975, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
+      propertyPath: openingTimer
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: -5840048728058336034, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
       propertyPath: m_Size.x
       value: 1.1791074
@@ -16537,6 +16572,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1096506061}
     - target: {fileID: -6897943128145670975, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
+      propertyPath: isElevator
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6897943128145670975, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
       propertyPath: linkedDoor
       value: 
       objectReference: {fileID: 1825529652}
@@ -16547,6 +16586,10 @@ PrefabInstance:
     - target: {fileID: -5840048728058336034, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
       propertyPath: m_Offset.x
       value: 0.0071411133
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628263742441741913, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 4802317106986237884, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
       propertyPath: m_Name
@@ -16592,10 +16635,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1628861684021933059, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4802317106986237884, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 806900281}
   m_SourcePrefab: {fileID: 100100000, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
 --- !u!1001 &5319574992631813813
 PrefabInstance:
