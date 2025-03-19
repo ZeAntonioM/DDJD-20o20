@@ -5768,9 +5768,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 342940892}
     m_Modifications:
     - target: {fileID: 242747251580842511, guid: 4ad87f056b182bc46903e294f706b070, type: 3}
+      propertyPath: timer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 242747251580842511, guid: 4ad87f056b182bc46903e294f706b070, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1096506061}
+    - target: {fileID: 242747251580842511, guid: 4ad87f056b182bc46903e294f706b070, type: 3}
+      propertyPath: invisibilityDuration
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5646491694629501458, guid: 4ad87f056b182bc46903e294f706b070, type: 3}
       propertyPath: m_Name
       value: plungerPowerUp_0
@@ -12005,6 +12013,14 @@ PrefabInstance:
       propertyPath: linkedDoor
       value: 
       objectReference: {fileID: 1315084530}
+    - target: {fileID: -5840048728058336034, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8256066
+      objectReference: {fileID: 0}
+    - target: {fileID: -5840048728058336034, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0044516325
+      objectReference: {fileID: 0}
     - target: {fileID: 4802317106986237884, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
       propertyPath: m_Name
       value: Elevator Group
@@ -13995,15 +14011,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5840048728058336034, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
       propertyPath: m_Size.x
-      value: 1.1791074
+      value: 0.8125136
       objectReference: {fileID: 0}
     - target: {fileID: -5840048728058336034, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
       propertyPath: m_Offset.x
-      value: 0.089553714
+      value: -0.0020946264
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628263742441741913, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4802317106986237884, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
       propertyPath: m_Name
       value: Elevator Group
+      objectReference: {fileID: 0}
+    - target: {fileID: 6662147963805813184, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8789631681495705267, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14309,6 +14333,14 @@ PrefabInstance:
       propertyPath: linkedDoor
       value: 
       objectReference: {fileID: 143042640}
+    - target: {fileID: -5840048728058336034, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.81083035
+      objectReference: {fileID: 0}
+    - target: {fileID: -5840048728058336034, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.014534354
+      objectReference: {fileID: 0}
     - target: {fileID: 4802317106986237884, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
       propertyPath: m_Name
       value: Elevator Group
@@ -15209,9 +15241,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 1315424328}
     m_Modifications:
     - target: {fileID: 242747251580842511, guid: 4ad87f056b182bc46903e294f706b070, type: 3}
+      propertyPath: timer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 242747251580842511, guid: 4ad87f056b182bc46903e294f706b070, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1096506061}
+    - target: {fileID: 242747251580842511, guid: 4ad87f056b182bc46903e294f706b070, type: 3}
+      propertyPath: invisibilityDuration
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5646491694629501458, guid: 4ad87f056b182bc46903e294f706b070, type: 3}
       propertyPath: m_Name
       value: plungerPowerUp_0
@@ -16581,11 +16621,11 @@ PrefabInstance:
       objectReference: {fileID: 1825529652}
     - target: {fileID: -5840048728058336034, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
       propertyPath: m_Size.x
-      value: 1.0142822
+      value: 0.8375404
       objectReference: {fileID: 0}
     - target: {fileID: -5840048728058336034, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
       propertyPath: m_Offset.x
-      value: 0.0071411133
+      value: 0.0036064386
       objectReference: {fileID: 0}
     - target: {fileID: 2628263742441741913, guid: fb4136d1e2c0bb14a8b91e6f6619da8b, type: 3}
       propertyPath: m_LocalPosition.x

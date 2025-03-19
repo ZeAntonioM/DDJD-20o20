@@ -57,20 +57,8 @@ public class Door : MonoBehaviour
         Vector3 startPosition = player.transform.position;
         Vector3 targetPosition = new Vector3(startPosition.x, transform.position.y, startPosition.z);
         Vector3 positionDifference = targetPosition - startPosition;
-        float transitionDuration = 1f;
-        float elapsedTime = 0f;
+        yield return StartCoroutine(MovePlayer(startPosition, targetPosition, 0.5f));
 
-        while (elapsedTime < transitionDuration)
-        {
-            player.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / transitionDuration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // Ensure the player reaches the target position
-        player.transform.position = targetPosition;
-
-        // Stop climbing animation
         playerAnimator.SetBool("isClimbing", false);
 
         ClosingAnimation();
@@ -78,31 +66,15 @@ public class Door : MonoBehaviour
 
         Vector3 door1 = player.transform.position;
         Vector3 door2 = new Vector3(linkedDoor.transform.position.x, linkedDoor.transform.position.y, linkedDoor.transform.position.z);
-        float elapsedTime2 = 0f;
-        while (elapsedTime2 < 3f)
-        {
-            player.transform.position = Vector3.Lerp(door1, door2, elapsedTime2 / 3f);
-            elapsedTime2 += Time.deltaTime;
-            yield return null;
-        }
-
-        // Ensure the player reaches the target position
-        player.transform.position = door2;
+        yield return StartCoroutine(MovePlayer(door1, door2, 1.5f));
 
         PlayOpeningAnimation(false);
         yield return new WaitForSeconds(openingTimer);
         ShowPlayer();
         playerAnimator.SetBool("isDescending", true);
 
-        float elapsedTime3 = 0f;
-        while (elapsedTime3 < transitionDuration)
-        {
-            player.transform.position = Vector3.Lerp(door2, door2-positionDifference, elapsedTime3 / transitionDuration);
-            elapsedTime3 += Time.deltaTime;
-            yield return null;
-        }
-
-        player.transform.position = (door2-positionDifference);
+        Vector3 finalPosition = new Vector3(door2.x, door2.y - positionDifference.y, door2.z);
+        yield return StartCoroutine(MovePlayer(door2, finalPosition, 0.5f));
 
         playerAnimator.SetBool("isDescending", false);
         playerStatus.SetInvisibility(false, false);
@@ -113,8 +85,20 @@ public class Door : MonoBehaviour
         {
             playerRb.bodyType = RigidbodyType2D.Dynamic;
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         inputsDisabled = false;
+    }
+
+    private IEnumerator MovePlayer(Vector3 startPosition, Vector3 targetPosition, float transitionDuration)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < transitionDuration)
+        {
+            player.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / transitionDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        player.transform.position = targetPosition;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
