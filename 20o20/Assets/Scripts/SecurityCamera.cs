@@ -15,13 +15,13 @@ public class SecurityCamera : MonoBehaviour
     private bool playerDetected = false;
     private float flipTimer = 0f;
     private bool facingRight = true;
-    private GameController gameController;
+    private PlayerStatus playerStatus;
 
     void Start()
     {
         // Initialize facing direction based on current scale
         facingRight = transform.localScale.x > 0;
-        gameController = FindFirstObjectByType<GameController>();
+        playerStatus = FindFirstObjectByType<PlayerStatus>();
         yellowInterrogation.SetActive(false);
         redExclamation.SetActive(false);
         
@@ -37,9 +37,10 @@ public class SecurityCamera : MonoBehaviour
             detectionTimer += Time.deltaTime;
             if (detectionTimer >= timeToBust)
             {
-                if (gameController != null)
+                if (playerStatus != null && !playerStatus.IsOnCooldown())
                 {
-                    gameController.GameOver();
+                    playerStatus.DecreaseLife();
+                    detectionTimer = 0;
                 }
             }
             else if (detectionTimer >= timeToBust / 2)
@@ -102,8 +103,10 @@ public class SecurityCamera : MonoBehaviour
         {
             if (hit.collider != null && hit.collider.CompareTag("Player"))
             {
-                playerDetected = true;
-                //Debug.Log("Player detected");
+                if (playerStatus != null && !playerStatus.IsOnCooldown())
+                {
+                    playerDetected = true;
+                }
             }
         }
     }

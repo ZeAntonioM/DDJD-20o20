@@ -218,7 +218,10 @@ public class Patroling : MonoBehaviour
         {
             if (ps == null || !ps.isInvisible)
             {
-                if (chasing) gameController.GameOver();
+                if (chasing && !ps.IsOnCooldown())
+                {
+                    ps.DecreaseLife();
+                }
             }
         }
     }
