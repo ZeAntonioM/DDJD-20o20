@@ -175,7 +175,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5483520037873506084, guid: 130231bef04b9d54982060b0f9b39ea9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.691
+      value: -0.027
+      objectReference: {fileID: 0}
+    - target: {fileID: 5483520037873506084, guid: 130231bef04b9d54982060b0f9b39ea9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7975534695324253350, guid: 130231bef04b9d54982060b0f9b39ea9, type: 3}
       propertyPath: m_Name
@@ -223,7 +227,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9049909558095133090, guid: 130231bef04b9d54982060b0f9b39ea9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.691
+      value: -0.02700001
+      objectReference: {fileID: 0}
+    - target: {fileID: 9049909558095133090, guid: 130231bef04b9d54982060b0f9b39ea9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9109401305440249943, guid: 130231bef04b9d54982060b0f9b39ea9, type: 3}
       propertyPath: m_Size.y
@@ -3425,6 +3433,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1319141704705829868, guid: eeb4d1e8aa2f52199be6130bfb54732f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 2765574275164638546, guid: eeb4d1e8aa2f52199be6130bfb54732f, type: 3}
       propertyPath: m_Name
       value: Interface
@@ -3432,6 +3444,10 @@ PrefabInstance:
     - target: {fileID: 2765574275164638546, guid: eeb4d1e8aa2f52199be6130bfb54732f, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3353943822415649161, guid: eeb4d1e8aa2f52199be6130bfb54732f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 5257169607186083193, guid: eeb4d1e8aa2f52199be6130bfb54732f, type: 3}
       propertyPath: timeToComplete
@@ -9832,7 +9848,7 @@ Transform:
   m_GameObject: {fileID: 1048157334}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.10345012, y: -0.30665207, z: -0.5688979}
+  m_LocalPosition: {x: 0.548, y: -0.30665207, z: -0.5688979}
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10288,7 +10304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Points: {fileID: 744525316}
   Lives: 3
-  detectionCooldown: 3
+  detectionCooldown: 2
   isInvisible: 0
   doorAnimation: 0
   hasCard: 0
@@ -10922,7 +10938,7 @@ Transform:
   m_GameObject: {fileID: 1196734785}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.26754987, y: -0.30665207, z: -0.5688979}
+  m_LocalPosition: {x: 0.9189999, y: -0.30665207, z: -0.5688979}
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12209,7 +12225,7 @@ Transform:
   m_GameObject: {fileID: 1422652153}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6, z: 200}
+  m_LocalPosition: {x: 0, y: 6.7, z: 200}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13862,11 +13878,11 @@ PrefabInstance:
       objectReference: {fileID: 1096506064}
     - target: {fileID: 4331632697567498108, guid: d1cec392d70149c459b0ccaadba101cb, type: 3}
       propertyPath: timeToBust
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4331632697567498108, guid: d1cec392d70149c459b0ccaadba101cb, type: 3}
       propertyPath: flipInterval
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7579456129658270726, guid: d1cec392d70149c459b0ccaadba101cb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16916,11 +16932,11 @@ PrefabInstance:
       objectReference: {fileID: 1096506064}
     - target: {fileID: 4331632697567498108, guid: d1cec392d70149c459b0ccaadba101cb, type: 3}
       propertyPath: timeToBust
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4331632697567498108, guid: d1cec392d70149c459b0ccaadba101cb, type: 3}
       propertyPath: flipInterval
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7579456129658270726, guid: d1cec392d70149c459b0ccaadba101cb, type: 3}
       propertyPath: m_LocalPosition.x

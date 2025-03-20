@@ -43,7 +43,7 @@ public class HeartManager : MonoBehaviour
 
         for (int i = 0; i < hearts.Count; i++)
         {
-            hearts[i].transform.position = new Vector3(i * heartSpacing, 0, 0);
+            hearts[i].transform.position = new Vector3(heartPrefab.transform.position.x+i * heartSpacing, heartPrefab.transform.position.y, heartPrefab.transform.position.z);
         }
     }
 }

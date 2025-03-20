@@ -168,6 +168,7 @@ public class Door : MonoBehaviour
 
     private void HidePlayer()
     {
+        
         if (playerRenderer != null) playerRenderer.enabled = false;
     }
 
