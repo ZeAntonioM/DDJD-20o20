@@ -168,12 +168,29 @@ public class Door : MonoBehaviour
 
     private void HidePlayer()
     {
-        
         if (playerRenderer != null) playerRenderer.enabled = false;
+
+        if (playerStatus != null)
+        {
+            foreach (GameObject heart in playerStatus.GetHearts())
+            {
+                SpriteRenderer heartRenderer = heart.GetComponent<SpriteRenderer>();
+                if (heartRenderer != null) heartRenderer.enabled = false;
+            }
+        }
     }
 
     private void ShowPlayer()
     {
         if (playerRenderer != null) playerRenderer.enabled = true;
+
+        if (playerStatus != null)
+        {
+            foreach (GameObject heart in playerStatus.GetHearts())
+            {
+                SpriteRenderer heartRenderer = heart.GetComponent<SpriteRenderer>();
+                if (heartRenderer != null) heartRenderer.enabled = true;
+            }
+        }
     }
 }

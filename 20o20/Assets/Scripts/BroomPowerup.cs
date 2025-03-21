@@ -1,4 +1,7 @@
 using UnityEngine;
+using System.Collections;
+using TMPro;
+
 
 public class BroomPowerup : MonoBehaviour
 {
@@ -6,6 +9,8 @@ public class BroomPowerup : MonoBehaviour
     [Header("Powerup Components")]
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private CapsuleCollider2D capsuleCollider2D;
+    [SerializeField] private TextMeshProUGUI transformationMessage;
+
 
     [Header("Powerup Settings")]
     [SerializeField] private float timer = 10;    
@@ -59,6 +64,22 @@ public class BroomPowerup : MonoBehaviour
 
     }
 
+    private void ShowTransformationMessage()
+    {
+        if (transformationMessage != null)
+        {
+            transformationMessage.text = "SNEAKING MODE ACTIVATED";
+            transformationMessage.gameObject.SetActive(true);
+            StartCoroutine(HideTransformationMessage());
+        }
+    }
+
+    private IEnumerator HideTransformationMessage()
+    {
+        yield return new WaitForSeconds(2f);
+        transformationMessage.gameObject.SetActive(false);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -68,6 +89,7 @@ public class BroomPowerup : MonoBehaviour
             capsuleCollider2D.enabled = false;
 
             if(playerStatus != null){
+                ShowTransformationMessage();
                 playerStatus.SetInvisibility(true);
                 isInvisibilityActive = true;
                 invisibilityTimer = invisibilityDuration;

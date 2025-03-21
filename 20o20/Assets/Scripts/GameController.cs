@@ -79,6 +79,10 @@ public class GameController : MonoBehaviour
             timeBonus = 0;
         }
         finalScore += (timeBonus * 6);
+
+        int lifeBonus = playerStatus.GetLives() * 500;
+        finalScore += lifeBonus;
+        
         return finalScore;
     }
 

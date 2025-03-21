@@ -1,12 +1,19 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerStatus : MonoBehaviour
 {
     [SerializeField] private GameObject Points;
     [SerializeField] private int Lives = 3;
-    [SerializeField] private float detectionCooldown = 3f; // Cooldown duration in seconds
+    [SerializeField] private float detectionCooldown = 3f;
+    [SerializeField] private GameObject heartObject;
+    [SerializeField] private float heartSpacing = 0.1f;
+    [SerializeField] private float heartSpacingVertical = 0.25f;
+
+    private List<GameObject> hearts = new List<GameObject>();
+
     private bool isOnCooldown = false;
     public bool isInvisible = false;
     public bool doorAnimation = false;
@@ -19,6 +26,12 @@ public class PlayerStatus : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        UpdateHearts(Lives);
+    }
+
+    void Update()
+    {
+        UpdateHearts(Lives);
     }
 
     public void SetInvisibility(bool value, bool animation = true)
@@ -130,6 +143,42 @@ public class PlayerStatus : MonoBehaviour
     public int GetLives()
     {
         return Lives;
+    }
+
+    private void UpdateHearts(int lives)
+    {
+        while (hearts.Count > lives)
+        {
+            GameObject heartToRemove = hearts[hearts.Count - 1];
+            hearts.RemoveAt(hearts.Count - 1);
+            Destroy(heartToRemove);
+        }
+
+        while (hearts.Count < lives)
+        {
+            GameObject newHeart = Instantiate(heartObject, transform);
+            hearts.Add(newHeart);
+        }
+
+        Vector3 startPosition = transform.position;
+
+
+        for (int i = 0; i < hearts.Count; i++)
+        {
+            float offset = (float)Math.Ceiling((double)i / 2) * heartSpacing;
+            if(i == 0){
+                hearts[i].transform.position = startPosition + new Vector3(0, heartSpacingVertical, 0);
+            } else if(i%2 != 0){
+                hearts[i].transform.position = startPosition + new Vector3(-offset, heartSpacingVertical, 0);
+            } else {
+                hearts[i].transform.position = startPosition + new Vector3(offset, heartSpacingVertical, 0);
+            }
+        }
+    }
+
+    public List<GameObject> GetHearts()
+    {
+        return hearts;
     }
 
     private void GameOver()
