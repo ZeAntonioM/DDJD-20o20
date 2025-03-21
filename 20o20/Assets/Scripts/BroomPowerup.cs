@@ -68,7 +68,7 @@ public class BroomPowerup : MonoBehaviour
     {
         if (transformationMessage != null)
         {
-            transformationMessage.text = "SNEAKING MODE ACTIVATED";
+            transformationMessage.text = "SNEAKY MODE ACTIVATED";
             transformationMessage.gameObject.SetActive(true);
             StartCoroutine(HideTransformationMessage());
         }

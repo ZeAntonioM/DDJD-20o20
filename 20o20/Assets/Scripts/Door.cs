@@ -56,7 +56,8 @@ public class Door : MonoBehaviour
         // Move player to the door's Y position
         Vector3 startPosition = player.transform.position;
         Vector3 targetPosition = new Vector3(startPosition.x, transform.position.y, startPosition.z);
-        Vector3 positionDifference = targetPosition - startPosition;
+        float positionDifference = targetPosition.y - startPosition.y;
+        if(positionDifference < 0.37f) positionDifference = 0.37f;
         yield return StartCoroutine(MovePlayer(startPosition, targetPosition, 0.5f));
 
         playerAnimator.SetBool("isClimbing", false);
@@ -65,7 +66,7 @@ public class Door : MonoBehaviour
         HidePlayer();
 
         Vector3 door1 = player.transform.position;
-        Vector3 door2 = new Vector3(linkedDoor.transform.position.x, linkedDoor.transform.position.y, linkedDoor.transform.position.z);
+        Vector3 door2 = new Vector3(linkedDoor.transform.position.x, linkedDoor.transform.position.y, door1.z);
         yield return StartCoroutine(MovePlayer(door1, door2, 1.5f));
 
         PlayOpeningAnimation(false);
@@ -73,12 +74,12 @@ public class Door : MonoBehaviour
         ShowPlayer();
         playerAnimator.SetBool("isDescending", true);
 
-        Vector3 finalPosition = new Vector3(door2.x, door2.y - positionDifference.y, door2.z);
+        Vector3 finalPosition = new Vector3(door2.x, door2.y - positionDifference, door1.z);
         yield return StartCoroutine(MovePlayer(door2, finalPosition, 0.5f));
 
         playerAnimator.SetBool("isDescending", false);
         playerStatus.SetInvisibility(false, false);
-        player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -5);
+        player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, startPosition.z);
 
         ClosingAnimation(false);
         if (playerRb != null)
