@@ -35,5 +35,5 @@ Most of the sprites used in this game were sourced from [LimeZu's Modern Interio
 
 ### 👾 Game Development Team
 
-- **José Martins**  
-- **Tomás Martins**
+- [**José Martins**](https://github.com/ZeAntonioM)
+- [**Tomás Martins**](https://github.com/TomasM30?tab=following)
