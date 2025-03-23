@@ -2,6 +2,8 @@
 
 *This game "20o20" was developed for the DDJD-FEUP-2025-Preliminary Projects.*
 
+![Video Release](https://youtu.be/RnZ2rvkiJps)
+
 ---
 
 ## 🎮 Controls
